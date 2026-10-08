@@ -18,13 +18,14 @@ with nova_sessao() as session:
     listar_livros(session)
 
     print("\nLivros de um autor:")
-    livros_por_autor(session, "DIGITE AQUI O NOME DE UM AUTOR DO SEU SEED")
+    livros_por_autor(session, "Franz Kafka")
 
     print("\nBusca por parte do título:")
-    buscar_livros(session, "DIGITE AQUI PARTE DE UM TÍTULO")
+    buscar_livros(session, "pequeno")
 
     print("\nAutores e quantidades:")
     listar_autores_com_quantidade(session)
 
     print("\nDetalhes de um livro:")
-    detalhes_livro(session, "DIGITE AQUI O TÍTULO DE UM LIVRO DO SEU SEED")
+    detalhes_livro(session, "A metamorfose")
+    

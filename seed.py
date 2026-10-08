@@ -1,18 +1,33 @@
+
 from models import Autor, Livro
 
 
+
+from models import Autor, Livro
+from sqlalchemy import select
+
+
 def popular_banco(session):
-    # TODO: crie pelo menos 3 autores e 6 livros.
-    # TODO: relacione os livros aos autores.
-    # TODO: use session.add ou session.add_all e session.commit.
-    
-    livro1 = Livro('pequeno principe', 1943, 'Antoine')
-    livro2 = Livro('dom casmurro', 1899, 'Machado de Assis')
-    livro3 = Livro('A metamorfose', 1915, 'Franz Kafka')
-    livro4 = Livro('o processo', 1925, 'Franz Kafka')
-    livro5 = Livro('Noites brancas', 1848, 'Fiódor Dostoiévski')
-    livro6 = Livro('a hora da estrela', 1977, 'Clarice Lispector')
-    autor1= Autor('Antoine', 'França')
-    autor2 = Autor('Franz Kafka', 'república theca')
-    autor3 = Autor('Clarice Lispector', 'Brasil')
-    
+    # Verifica se já existem autores no banco
+    if session.scalars(select(Autor)).first():
+        return
+
+    autor1 = Autor(nome='Antoine', pais='França')
+    autor2 = Autor(nome='Franz Kafka', pais='República Tcheca')
+    autor3 = Autor(nome='Clarice Lispector', pais='Brasil')
+    autor4 = Autor(nome='Machado de Assis', pais='Brasil')
+    autor5 = Autor(nome='Fiódor Dostoiévski', pais='Rússia')
+
+    livro1 = Livro(titulo='O Pequeno Príncipe', ano=1943, autor=autor1)
+    livro2 = Livro(titulo='Dom Casmurro', ano=1899, autor=autor4)
+    livro3 = Livro(titulo='A Metamorfose', ano=1915, autor=autor2)
+    livro4 = Livro(titulo='O Processo', ano=1925, autor=autor2)
+    livro5 = Livro(titulo='Noites Brancas', ano=1848, autor=autor5)
+    livro6 = Livro(titulo='A Hora da Estrela', ano=1977, autor=autor3)
+
+    session.add_all([
+        autor1, autor2, autor3, autor4, autor5,
+        livro1, livro2, livro3, livro4, livro5, livro6
+    ])
+
+    session.commit()

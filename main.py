@@ -4,6 +4,9 @@ from consultas import (
     listar_autores_com_quantidade,
     listar_livros,
     livros_por_autor,
+    listar_livros_disponiveis,
+    emprestar_livro,
+    devolver_livro
 )
 from database import criar_banco, nova_sessao
 from seed import popular_banco
@@ -28,4 +31,13 @@ with nova_sessao() as session:
 
     print("\nDetalhes de um livro:")
     detalhes_livro(session, "A metamorfose")
+    
+    print("\nlivros disponíveis:")
+    listar_livros_disponiveis(session)
+    
+    print("\nemprestar livro:")
+    emprestar_livro(session, 'A Metamorfose')
+    
+    print("\n devolver livro:")
+    devolver_livro(session, 'A Metamorfose')
     

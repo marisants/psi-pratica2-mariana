@@ -24,6 +24,7 @@ class Livro(Base):
   titulo: Mapped[str]
   ano: Mapped[int]
   autor_id: Mapped[int] = mapped_column(ForeignKey('autor.id'))
+  disponivel: Mapped[bool] =  mapped_column(default= True)
   autor: Mapped['Autor'] = relationship(back_populates = 'livros')
 # Campos: id, titulo, ano, autor_id.
 # Relacionamento: autor.
